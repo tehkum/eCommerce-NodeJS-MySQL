@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{title}}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="https://kit.fontawesome.com/d049c8f040.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg opacity-75" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Gungun Sewing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if customer}}
+                  {{#with customer}}
+                    <li>
+                      <a href="/usr/" class="dropdown-item">
+                        {{FullName}}
+                      </a>
+                    </li>
+                  {{/with}}
+                {{else}}
+                  <li>
+                    <a href="/sign-in" class="dropdown-item">
+                      Account
+                    </a>
+                  </li>
+                {{/if}}
+                {{#if customer}}
+                  <li>
+                    <a href="/sign-out" class="dropdown-item">
+                      Logout
+                    </a>
+                  </li>
+                {{/if}}
+
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/cat/all">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/categoryProducts">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-1" href="/cart"><i class="fa-sharp fa-solid fa-bag-shopping"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+        <section class="vh-50" style="background-color: #eee;">
+            <div class="container h-50">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                        <form class="mx-1 mx-md-4" id='sign-up' method='POST'>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example1c">Your Name</label>
+                                                    <input type="text" id="form3Example1c" class="form-control"  name='fullName' placeholder='Full name' required=true/>
+                                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="email" id="form3Example3c" class="form-control" name='email' placeholder='Email Address' required=true/>
+                                                    <label class="form-label" for="form3Example3c">Your Email</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text" id="form3Example1c" class="form-control" name='streetAddress' placeholder='Street Address' required=true/>
+                                                    <label class="form-label" for="form3Example1c">Street
+                                                        Address</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-location-dot fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text" id="form3Example3c" class="form-control" name='postcode' placeholder='Postcode' required=true/>
+                                                    <label class="form-label" for="form3Example3c">PIN Code</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-city fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text" id="form3Example4c" class="form-control" name='city' placeholder='City' required=true/>
+                                                    <label class="form-label" for="form3Example4c">City</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-flag fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text" id="form3Example4cd" class="form-control" name='country', placeholder='Country' required=true/>
+                                                    <label class="form-label" for="form3Example4cd">Country</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="tel" id="form3Example4cd" class="form-control" name='phone', placeholder='Phone number' required=true/>
+                                                    <label class="form-label" for="form3Example4cd">Phone Number</label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text" id="form3Example4cd" class="form-control" name='username', placeholder='Username' required=true/>
+                                                    <label class="form-label" for="form3Example4cd">Username</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="password" id="form3Example4c" class="form-control" name='password', placeholder='Password' required=true/>
+                                                    <label class="form-label" for="form3Example4c">Password</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="password" id="form3Example4cd" class="form-control" name='rePassword', placeholder='Password again' required=true/>
+                                                    <label class="form-label" for="form3Example4cd">Repeat your
+                                                        password</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-check d-flex justify-content-center mb-5">
+                                                <input class="form-check-input me-2" type="checkbox" value=""
+                                                    id="form2Example3c" />
+                                                <label class="form-check-label" for="form2Example3">
+                                                    I agree all statements in <a href="#!">Terms of service</a>
+                                                </label>
+                                            </div>
+                                            <div class="form-check d-flex justify-content-center mb-5">
+                                               
+                                                <label class="form-check-label" for="form2Example3">
+                                                    Already a Customer? <a href="/sign-in">Sign In</a>
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                    <div
+                                        class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                            class="img-fluid" alt="Sample image">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--***********************************************************footer*****************************************************************************-->
+        <footer class=" text-center text-black">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-facebook-f"></i></a>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-twitter"></i></a>
+
+                    <!-- Google -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-google"></i></a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-instagram"></i></a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-linkedin-in"></i></a>
+
+                    <!-- Github -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-github"></i></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2023 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">Gungun Sewing</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>

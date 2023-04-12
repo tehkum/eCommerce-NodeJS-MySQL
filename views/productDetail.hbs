@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/d049c8f040.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <nav class="navbar sticky-top navbar-expand-lg opacity-75" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Gungun Sewing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if customer}}
+                  {{#with customer}}
+                    <li>
+                      <a href="/usr/" class="dropdown-item">
+                        {{FullName}}
+                      </a>
+                    </li>
+                  {{/with}}
+                {{else}}
+                  <li>
+                    <a href="/sign-in" class="dropdown-item">
+                      Account
+                    </a>
+                  </li>
+                {{/if}}
+                {{#if customer}}
+                  <li>
+                    <a href="/sign-out" class="dropdown-item">
+                      Logout
+                    </a>
+                  </li>
+                {{/if}}
+
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/cat/all">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/categoryProducts">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-1" href="/cart"><i class="fa-sharp fa-solid fa-bag-shopping"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <div id="app" class="rigth-hand-side-card" style="padding: 30px">
+    {{#if product}}
+    <div class="container container-space">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="img-fluid" src="/img/products/{{product.Image}}" alt="image" />
+          <img class="img-fluid" src="https://{{product.Image1}}" alt="wqerw" />
+          <img class="img-fluid" src="https://{{product.Image2}}" alt="2134" />
+
+          {{!-- <div class="product-thumbnails">
+            <ul>
+              <li v-for="(image, index) in productImages" :class="[activeClass == index ? 'thumbnail-active': '']"
+                :key="index"><img @click="currentThumnail(image.imageUrl, index)" :src="image.imageUrl" alt="" /></li>
+            </ul>
+          </div> --}}
+        </div>
+        <div class="col-md-4">
+          <h1 class="my-4">{{product.ProductName}}</h1>
+          <h3 class="my-3">
+            ₹{{product.ProductPrice}}
+            {{!-- {{cart}} --}}
+          </h3>
+          <b>Availability:</b>
+          In Stock
+          <p>
+            <b>Manufacturing year:</b>
+            {{product.ManufactureYear}}
+          </p>
+
+          <p>{{product.Description}}</p>
+          <p>{{product.Description1}}</p>
+          <h3 class="my-3">Details</h3>
+
+
+          <table class="table">
+            {{!-- <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead> --}}
+            <tbody>
+              <tr>
+                <td scope="row">Product Name</td>
+                <td></td>
+                <td>{{product.ProductName}}</td>
+              </tr>
+              <tr>
+                <td scope="row">Product Price</td>
+                <td></td>
+                <td>{{product.ProductPrice}}</td>
+              </tr>
+              <tr>
+                <td scope="row">Author</td>
+                <td></td>
+                <td>Gungun Sewing And Botique</td>
+              </tr>
+              <tr>
+                <td scope="row">Manufacturing year</td>
+                <td></td>
+                <td>{{product.ManufactureYear}}</td>
+              </tr>
+              <tr>
+                <td scope="row">Edition</td>
+                <td></td>
+                <td>{{product.edition}}</td>
+              </tr>
+              <tr>
+                <td scope="row">Language</td>
+                <td></td>
+                <td>{{product.language}}</td>
+              </tr>
+              <tr>
+                <td scope="row">Number Of Pages</td>
+                <td></td>
+                <td>{{product.numberofpages}}</td>
+              </tr>
+              <tr>
+                <td scope="row">Binding</td>
+                <td></td>
+                <td>Paperback</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <form action="/cart/{{product.ProductID}}/add" method="POST">
+            <button type="submit" class="btn btn-outline-primary add-to-cart btn-lg btn-block btn-custom-color">
+              BUY NOW
+            </button>
+          </form>
+          <a href="https://wa.me/919893074902/?text=/cat/{{product.CategorySlug}}/{{product.ProductSlug}}">Purchase
+            Through Whatsapp</a>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+  {{!-- <!-- <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                      Add to cart
+                    </button> -->
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  {{/if}}
+  </div>
+  </section> --}}
+
+  {{!-- <section>
+    <div class="container">
+      <div class="row">
+        {{#if product}}
+        <div class="product-details">
+          <div class="col-sm-5">
+            <div class="view-product">
+              <img src="/img/products/{{Image}}" alt={{ProductName}}">
+            </div>"
+          </div>
+          <div class="col-sm-7">
+            <div class="product-information">
+              <img src="images/product-details/new.jpg" alt="" class="newarrival">
+              <h2>{{ProductName}}</h2>
+              <p>{{ProductDescription}}</p>
+              {{- var availability = 'In Stock'}}
+              {{#if (lt UnitsInStock 1)}}
+              {{- availability = 'Out of order'}}
+              {{/if}}
+              <p>
+                <b>Availability:</b>
+                {{' ' + availability}}
+              </p>
+              <p>
+                <b>Manufacturing year:</b>
+                {{' ' + ManufactureYear}}
+              </p>
+              <p>
+                <b>Brand:</b>
+                aStore
+              </p>
+              <span>
+                <span>₹{{ProductPrice}}</span>
+                <form action="/cart/{{ProductID}}/add" method="POST">
+                  <label>Quantity:</label>
+                  <input type="text" name="quantity" value="1">
+                  <br>
+                  <button type="submit" class="btn btn-default add-to-cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    Add to cart
+                  </button>
+                </form>
+              </span>
+              <a href="">
+                <img src="images/product-details/share.png" alt="" class="share img-responsive">
+              </a>
+            </div>
+          </div>
+        </div>
+        {{/if}}
+
+      </div>
+    </div>
+  </section> --}}
+
+  <!--********************footer**************************-->
+  <footer class=" text-center text-black">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+
+        <!-- Github -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">Gungun Sewing</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script>
+    var productDetail = new Vue({
+      el: "#app",
+      data: {
+        productTitle: "Round Neck Vue Logo T-Shirt",
+        productPrice: "$20",
+        productChecks: [
+          "100% cotton on the neckline",
+          "certified and safe",
+          "ash in color",
+          "Smooth in quality"
+        ],
+        bannerImage: "https://i.imgur.com/Nmuu6Jh.jpg",
+        productImages: [
+          {
+            id: 3435,
+            imageUrl: "https://i.imgur.com/Nmuu6Jh.jpg"
+          },
+          {
+            id: 3436,
+            imageUrl: "https://i.imgur.com/VFcTYyU.jpg"
+          }
+        ],
+        cart: 0,
+        stockAvailability: true,
+        activeClass: 0
+      },
+      methods: {
+        addToCart: function () {
+          this.cart = this.cart + 1;
+        },
+        currentThumnail: function (image, index) {
+          this.bannerImage = image;
+          this.activeClass = index;
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>

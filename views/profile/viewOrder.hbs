@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/d049c8f040.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg opacity-75" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Gungun Sewing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if customer}}
+                  {{#with customer}}
+                    <li>
+                      <a href="/usr/" class="dropdown-item">
+                        {{FullName}}
+                      </a>
+                    </li>
+                  {{/with}}
+                {{else}}
+                  <li>
+                    <a href="/sign-in" class="dropdown-item">
+                      Account
+                    </a>
+                  </li>
+                {{/if}}
+                {{#if customer}}
+                  <li>
+                    <a href="/sign-out" class="dropdown-item">
+                      Logout
+                    </a>
+                  </li>
+                {{/if}}
+
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/cat/all">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/categoryProducts">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-1" href="/cart"><i class="fa-sharp fa-solid fa-bag-shopping"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+    <div class="d-flex">
+      <div class="p-2 d-none d-lg-block" style="width:30%;">
+        <div class="card position-fixed" style="width: 20%; margin-left: 60px;">
+          <div class="card-header">
+            <h4>Featured</h4>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="/usr/{{customer.Username}}">Personal
+                Info</a></li>
+            <li class="list-group-item"> <a href="/usr/{{customer.Username}}/orders">Orders</a></li>
+            <li class="list-group-item"><a href="/usr/{{customer.Username}}/addresses">Delivery
+                Addresses</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <div class="p-2 productCardWidth" style="width:70%">
+        <div class="adminPanelDropdown" style="margin-bottom: 10px;">
+          <p>
+            <button class="btn mb-10" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+              aria-expanded="false" aria-controls="collapseExample">
+              Admin Panel ↓
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/admin/cat">Categories</a></li>
+                <li class="list-group-item"><a href="/admin/products">Products</a></li>
+                <li class="list-group-item"><a href="/admin/orders">Orders</a></li>
+                <li class="list-group-item"><a href="/admin/customers">Customers</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="background-color: #eee">
+          <div class="card-body">
+            <h1 class="card-title">View Order</h1>
+            <hr>
+            <section>
+              <div class="row">
+                <div class="col-sm-6">
+
+                  <div class="card">
+                    <div class="card-body">
+
+                      <div class="table-responsive cart_info">
+                        <table class="table table-condensed total-result">
+                          <thead>
+                            <tr class="cart_menu">
+                              <td colspan="2">Delivery Address</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Fullname</td>
+                              <td>{{address.FullName}}</td>
+                            </tr>
+                            <tr>
+                              <td>Address</td>
+                              <td>{{address.StreetAddress}}</td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>{{address.PostCode}} {{address.City}}</td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>{{address.Country}}</td>
+                            </tr>
+                            <tr>
+                              <td>Tel</td>
+                              <td>{{address.Phone}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row" style="margin: 10px 0;">
+
+                <div class="card">
+                  <div class="card-body">
+
+                    <h5>Order Information</h5>
+                    <div class="table-responsive cart_info">
+                      <table class="table table-condensed">
+                        <thead>
+                          <tr class="cart_menu">
+                            <td class="image"></td>
+                            <td class="description">Product</td>
+                            <td class="price">Unit Price</td>
+                            <td class="quantity">Quantity</td>
+                            <td class="total">Total</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each products}}
+
+                            <td class="cart_product">
+                              <a href="/cat/{{CategorySlug}}/{{ProductSlug}}">
+                                <img src="/img/products/{{Image}}" alt="{{ProductName}}">
+                              </a>
+                            </td>
+                            <td class="cart_description">
+                              <h4>
+                                <a href="/cat/{{CategorySlug}}/{{ProductSlug}}">{{ProductName}}</a>
+                              </h4>
+                              <p>{{Description}}</p>
+                            </td>
+                            <td class="cart_price">
+                              <p>{{ProductPrice}}</p>
+                            </td>
+                            <td class="cart_quantity">
+                              <p>{{Quantity}}</p>
+                            </td>
+                            <td class="cart_total">
+                              <p class="cart_total_price"> ₹{{Total}}</p>
+                            </td>
+                            </tr>
+                          {{/each}}
+                          <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2">
+                              <table class="table table-condensed total-result">
+                                <thead>
+                                  <tr class="cart_menu">
+                                    <td colspan="2">Summary</td>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Sub Total</td>
+                                    <td> ₹{{order.SubTotal}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Discount</td>
+                                    <td> ₹{{order.Discount}}</td>
+                                  </tr>
+                                  <tr class="shipping-cost">
+                                    <td>Shipping Cost</td>
+                                    <td> ₹{{order.ShippingFee}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Total</td>
+                                    <td><span> ₹{{order.Total}}</span></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    {{!-- <div class="review-payment">
+      <h2>Order #{{order.OrderID}}</h2>
+      <p>Time ordered: {{order.OrderDate}}</p>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="table-responsive cart_info">
+          <table class="table table-condensed">
+            <thead>
+              <tr class="cart_menu">
+                <td class="image"></td>
+                <td class="description">Product</td>
+                <td class="price">Unit Price</td>
+                <td class="quantity">Quantity</td>
+                <td class="total">Total</td>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each products}}
+                {{#with this}}
+                  {{#set quantity=Quantity}}
+                    {{#set name=ProductName}}
+                      {{#set productLink="/cat/"+CategorySlug+"/"+ProductSlug}}
+                        {{#set unitPrice=ProductPrice}}
+                          {{#set productTotal=Total}}
+                            <tr>
+                              <td class="cart_product">
+                                <a href="{{productLink}}">
+                                  <img src="/img/products/{{Image}}" alt="{{name}}">
+                                </a>
+                              </td>
+                              <td class="cart_description">
+                                <h4>
+                                  <a href="{{productLink}}">{{name}}</a>
+                                </h4>
+                                <p>{{Description}}</p>
+                              </td>
+                              <td class="cart_price">
+                                <p>₱{{unitPrice}}</p>
+                              </td>
+                              <td class="cart_quantity">
+                                <p>{{Quantity}}</p>
+                              </td>
+                              <td class="cart_total">
+                                <p class="cart_total_price">₱{{Total}}</p>
+                              </td>
+                            </tr>
+                {{/with}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="table-responsive cart_info">
+          {{#if address}}
+            <table class="table table-condensed total-result">
+              <thead>
+                <tr class="cart_menu">
+                  <td colspan="2">Delivery Address</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  < --}}
+    <!--***********************************************************footer*****************************************************************************-->
+    <footer class=" text-center text-black">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+              class="fab fa-facebook-f"></i></a>
+
+          <!-- Twitter -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+
+          <!-- Google -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+          <!-- Linkedin -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+              class="fab fa-linkedin-in"></i></a>
+
+          <!-- Github -->
+          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">Gungun Sewing</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+  </body>
+
+</html>
